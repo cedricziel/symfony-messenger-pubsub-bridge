@@ -6,6 +6,7 @@ use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\GcpPubSubTransport;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\GcpPubSubTransportFactory;
 use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 use Symfony\Component\Messenger\Transport\Serialization\Serializer;
 
 class GcpPubSubTransportFactoryTest extends TestCase
@@ -19,9 +20,12 @@ class GcpPubSubTransportFactoryTest extends TestCase
         $factory = new GcpPubSubTransportFactory($client);
         $serializer = Serializer::create();
 
-        $transport = $factory->createTransport($dsn, $options, $serializer);
         if ($expected) {
+            $transport = $factory->createTransport($dsn, $options, $serializer);
             self::assertInstanceOf(GcpPubSubTransport::class, $transport);
+        } else {
+            $this->expectException(InvalidArgumentException::class);
+            $transport = $factory->createTransport($dsn, $options, $serializer);
         }
     }
 
@@ -40,8 +44,8 @@ class GcpPubSubTransportFactoryTest extends TestCase
     {
         return [
             ['', [], false],
-            ['gcpps://', [], true],
-            ['gcpps://my-gcp-project', [], true],
+            ['pubsub://', [], true],
+            ['pubsub://my-gcp-project', [], true],
             ['amqp://localhost', [], false],
         ];
     }
