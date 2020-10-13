@@ -1,5 +1,6 @@
 {
     "name": "cedricziel/messenger-pubsub",
+    "description": "Bridging Symfony Messenger with Google Cloud Pub/Sub",
     "type": "symfony-bridge",
     "license": "MIT",
     "authors": [
