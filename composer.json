@@ -1,0 +1,35 @@
+{
+    "name": "cedricziel/messenger-pubsub",
+    "type": "symfony-bridge",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cedric Ziel",
+            "email": "mail@cedric-ziel.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CedricZiel\\Symfony\\Messenger\\Bridge\\GcpPubSub\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CedricZiel\\Symfony\\Messenger\\Bridge\\GcpPubSub\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "google/cloud-pubsub": "^1.29",
+        "symfony/messenger": "^5.1"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.1",
+        "symfony/event-dispatcher": "^4.4|^5.0",
+        "symfony/process": "^4.4|^5.0",
+        "symfony/property-access": "^4.4|^5.0",
+        "symfony/serializer": "^4.4|^5.0"
+    },
+    "scripts": {
+        "test": "@php vendor/bin/simple-phpunit"
+    }
+}
