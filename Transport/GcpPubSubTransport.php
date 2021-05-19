@@ -1,6 +1,6 @@
 <?php
 
-namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub;
+namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport;
 
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Transport\Receiver\MessageCountAwareInterface;

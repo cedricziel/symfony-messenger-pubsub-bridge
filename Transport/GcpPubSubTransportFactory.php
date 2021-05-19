@@ -1,6 +1,6 @@
 <?php
 
-namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub;
+namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport;
 
 use Google\Cloud\PubSub\PubSubClient;
 use Symfony\Component\Messenger\Exception\InvalidArgumentException;

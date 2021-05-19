@@ -11,13 +11,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "CedricZiel\\Symfony\\Messenger\\Bridge\\GcpPubSub\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "CedricZiel\\Symfony\\Messenger\\Bridge\\GcpPubSub\\Test\\": "test/"
-        }
+            "CedricZiel\\Symfony\\Messenger\\Bridge\\GcpPubSub\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
     },
     "require": {
         "google/cloud-pubsub": "^1.29",

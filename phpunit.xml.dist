@@ -14,15 +14,15 @@
 
     <testsuites>
         <testsuite name="Symfony Google Cloud Platform Pub/Sub Messenger Bridge Test Suite">
-            <directory>./test/</directory>
+            <directory>./Tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>./</directory>
             <exclude>
-                <directory>./test</directory>
+                <directory>./Tests</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>
