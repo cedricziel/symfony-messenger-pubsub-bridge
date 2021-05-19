@@ -10,11 +10,20 @@ use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 
 class Connection
 {
-    private array $clientConfig;
+    /**
+     * @var array
+     */
+    private $clientConfig;
 
-    private array $subscriptionConfig;
+    /**
+     * @var array
+     */
+    private $subscriptionConfig;
 
-    private array $topicConfig;
+    /**
+     * @var array
+     */
+    private $topicConfig;
 
     public function __construct(array $clientConfig, array $subscriptionConfig, array $topicOptions)
     {
@@ -63,7 +72,13 @@ class Connection
         return new self($clientOptions, $subscriptionConfig, $topicOptions);
     }
 
-    public function publish(string $body, array $headers = []): array
+    /**
+     * @param string $body
+     * @param array $headers
+     *
+     * @return array
+     */
+    public function publish(string $body, array $headers = [])
     {
         return $this->publishOnTopic(
             $this->topic(),

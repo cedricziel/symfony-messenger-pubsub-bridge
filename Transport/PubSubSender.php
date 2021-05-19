@@ -2,11 +2,8 @@
 
 namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport;
 
-use Google\Cloud\PubSub\Message;
-use Google\Cloud\PubSub\Topic;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\TransportException;
-use Symfony\Component\Messenger\Stamp\DelayStamp;
 use Symfony\Component\Messenger\Stamp\TransportMessageIdStamp;
 use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
 use Symfony\Component\Messenger\Transport\Serialization\PhpSerializer;
@@ -19,7 +16,10 @@ class PubSubSender implements SenderInterface
      */
     private $serializer;
 
-    private Connection $connection;
+    /**
+     * @var Connection
+     */
+    private $connection;
 
     public function __construct(Connection $connection, SerializerInterface $serializer = null)
     {

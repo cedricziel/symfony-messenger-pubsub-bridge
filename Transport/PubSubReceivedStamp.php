@@ -11,9 +11,15 @@ use Symfony\Component\Messenger\Stamp\NonSendableStampInterface;
  */
 class PubSubReceivedStamp implements NonSendableStampInterface
 {
-    private Message $message;
+    /**
+     * @var Message
+     */
+    private $message;
 
-    private Subscription $subscription;
+    /**
+     * @var Subscription
+     */
+    private $subscription;
 
     public function __construct(Message $message, Subscription $subscription)
     {

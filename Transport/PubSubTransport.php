@@ -10,15 +10,24 @@ use Symfony\Component\Messenger\Transport\TransportInterface;
 
 class PubSubTransport implements TransportInterface, SetupableTransportInterface
 {
-    private Connection $connection;
+    /**
+     * @var Connection
+     */
+    private $connection;
 
     /**
      * @var PhpSerializer|SerializerInterface
      */
     private $serializer;
 
+    /**
+     * @var PubSubReceiver
+     */
     private $receiver;
 
+    /**
+     * @var PubSubSender
+     */
     private $sender;
 
     public function __construct(Connection $connection, SerializerInterface $serializer = null)
