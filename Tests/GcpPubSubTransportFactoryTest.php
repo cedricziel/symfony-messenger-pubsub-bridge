@@ -1,9 +1,9 @@
 <?php
 
-namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Test;
+namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Tests;
 
-use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\GcpPubSubTransport;
-use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\GcpPubSubTransportFactory;
+use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\GcpPubSubTransport;
+use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\GcpPubSubTransportFactory;
 use Google\Cloud\PubSub\PubSubClient;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Exception\InvalidArgumentException;
