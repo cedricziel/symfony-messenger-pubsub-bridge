@@ -2,7 +2,6 @@
 
 namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Tests\Transport;
 
-use AMQPException;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\Connection;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\PubSubReceivedStamp;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\PubSubReceiver;

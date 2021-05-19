@@ -11,9 +11,9 @@ use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 
 class PubSubReceiver implements ReceiverInterface
 {
-    private $serializer;
+    private SerializerInterface $serializer;
 
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection, SerializerInterface $serializer = null)
     {

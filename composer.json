@@ -18,6 +18,7 @@
         ]
     },
     "require": {
+        "php": ">=7.2.5",
         "google/cloud-pubsub": "^1.29",
         "symfony/messenger": "^5.3"
     },

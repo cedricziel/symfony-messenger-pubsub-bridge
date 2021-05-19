@@ -14,21 +14,18 @@ class PubSubTransportFactoryTest extends TestCase
     {
         $factory = new PubSubTransportFactory();
 
-        self::assertTrue($factory->supports('pubsub://my-project', []));
+        self::assertTrue($factory->supports('pubsub://my-project/my-topic?subscription=foo', []));
         self::assertFalse($factory->supports('sqs://localhost', []));
         self::assertFalse($factory->supports('invalid-dsn', []));
     }
 
-    /**
-     * @requires extension amqp
-     */
     public function testItCreatesTheTransport()
     {
         $factory = new PubSubTransportFactory();
         $serializer = $this->createMock(SerializerInterface::class);
 
-        $expectedTransport = new PubSubTransport(Connection::fromDsn('amqp://localhost', ['host' => 'localhost']), $serializer);
+        $expectedTransport = new PubSubTransport(Connection::fromDsn('pubsub://my-project/my-topic?subscription=foo', ['host' => 'localhost']), $serializer);
 
-        self::assertEquals($expectedTransport, $factory->createTransport('amqp://localhost', ['host' => 'localhost'], $serializer));
+        self::assertEquals($expectedTransport, $factory->createTransport('pubsub://my-project/my-topic?subscription=foo', ['host' => 'localhost'], $serializer));
     }
 }

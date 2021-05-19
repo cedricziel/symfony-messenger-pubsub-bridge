@@ -39,7 +39,8 @@ class Connection
         ];
 
         $pathParts = isset($parsedUrl['path']) ? explode('/', trim($parsedUrl['path'], '/')) : [];
-        $topicName = $pathParts[1] ?? '';
+        $topicName = $pathParts[0] ?? '';
+
         if ($topicName === '') {
             throw new InvalidArgumentException('You need to supply a topic name');
         }
@@ -47,11 +48,16 @@ class Connection
         parse_str($parsedUrl['query'] ?? '', $parsedQuery);
 
         $topicOptions = [
-            'name' => $parsedQuery['topic'] ?? null,
+            'name' => $topicName ?? null,
         ];
 
+        $subscriptionName = $parsedQuery['subscription'] ?? null;
+        if ($subscriptionName === null || $subscriptionName === '') {
+            throw new InvalidArgumentException('You need to supply a subscription name');
+        }
+
         $subscriptionConfig = [
-            'name' => $parsedQuery['subscription'] ?? null,
+            'name' => $subscriptionName,
         ];
 
         return new self($clientOptions, $subscriptionConfig, $topicOptions);
