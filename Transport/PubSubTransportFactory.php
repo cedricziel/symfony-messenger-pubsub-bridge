@@ -2,25 +2,15 @@
 
 namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport;
 
-use Google\Cloud\PubSub\PubSubClient;
 use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 use Symfony\Component\Messenger\Transport\Serialization\SerializerInterface;
 use Symfony\Component\Messenger\Transport\TransportFactoryInterface;
 use Symfony\Component\Messenger\Transport\TransportInterface;
 
-class GcpPubSubTransportFactory implements TransportFactoryInterface
+class PubSubTransportFactory implements TransportFactoryInterface
 {
     const GOOGLE_CLOUD_PUBSUB_SCHEME = 'pubsub';
-
-    /**
-     * @var PubSubClient
-     */
-    private PubSubClient $client;
-
-    public function __construct(PubSubClient $client)
-    {
-        $this->client = $client;
-    }
+    const GOOGLE_CLOUD_PUBSUB_PROTO_SCHEME = 'pubsub://';
 
     public function createTransport(string $dsn, array $options, SerializerInterface $serializer): TransportInterface
     {
@@ -28,7 +18,7 @@ class GcpPubSubTransportFactory implements TransportFactoryInterface
             throw new InvalidArgumentException(sprintf('Invalid DSN: %s', self::GOOGLE_CLOUD_PUBSUB_SCHEME));
         }
 
-        return new GcpPubSubTransport();
+        return new PubSubTransport(Connection::fromDsn($dsn, $options), $serializer);
     }
 
     public function supports(string $dsn, array $options): bool
