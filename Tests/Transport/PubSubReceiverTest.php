@@ -2,6 +2,7 @@
 
 namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Tests\Transport;
 
+use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Tests\Fixtures\DummyMessage;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\Connection;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\PubSubReceivedStamp;
 use CedricZiel\Symfony\Messenger\Bridge\GcpPubSub\Transport\PubSubReceiver;
@@ -9,7 +10,6 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use Symfony\Component\Messenger\Bridge\Amqp\Tests\Fixtures\DummyMessage;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Exception\TransportException;
 use Symfony\Component\Messenger\Transport\Serialization\Serializer;
