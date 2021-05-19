@@ -77,6 +77,8 @@ class PubSubReceiver implements ReceiverInterface
      */
     public function reject(Envelope $envelope): void
     {
-        // everything else then an ack is a reject
+        $stamp = $this->findPubSubStamp($envelope);
+
+        $this->connection->nack($stamp->getMessage(), $stamp->getSubscription());
     }
 }

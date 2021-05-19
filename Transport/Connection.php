@@ -57,9 +57,9 @@ class Connection
         return new self($clientOptions, $subscriptionConfig, $topicOptions);
     }
 
-    public function publish(string $body, array $headers = []): void
+    public function publish(string $body, array $headers = []): array
     {
-        $this->publishOnTopic(
+        return $this->publishOnTopic(
             $this->topic(),
             $body,
             $headers
@@ -68,7 +68,7 @@ class Connection
 
     private function publishOnTopic(Topic $topic, string $body, array $headers)
     {
-        $topic->publish(new Message([
+        return $topic->publish(new Message([
             'attributes' => $headers,
             'data' => $body,
         ]));
@@ -112,8 +112,8 @@ class Connection
         }
     }
 
-    public function send($body, $param, int $delay)
+    public function nack(Message $getMessage, Subscription $getSubscription)
     {
-
+        // everything else than ack will result in nack
     }
 }

@@ -30,14 +30,8 @@ class PubSubSender implements SenderInterface
     public function send(Envelope $envelope): Envelope
     {
         $encodedMessage = $this->serializer->encode($envelope);
-
-        /** @var DelayStamp|null $delayStamp */
-        $delayStamp = $envelope->last(DelayStamp::class);
-        $delay = null !== $delayStamp ? $delayStamp->getDelay() : 0;
-
         try {
-            $this->connection->publish(new Message($encodedMessage['body']));
-            $id = $this->connection->send($encodedMessage['body'], $encodedMessage['headers'] ?? [], $delay);
+            $id = $this->connection->publish($encodedMessage['body'], $encodedMessage['headers'] ?? [])[0];
         } catch (\Exception $exception) {
             throw new TransportException($exception->getMessage(), 0, $exception);
         }
