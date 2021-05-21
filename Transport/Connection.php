@@ -137,4 +137,9 @@ class Connection
     {
         // everything else than ack will result in nack
     }
+
+    public function getClientConfig()
+    {
+        return $this->clientConfig;
+    }
 }

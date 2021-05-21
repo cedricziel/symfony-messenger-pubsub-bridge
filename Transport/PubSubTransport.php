@@ -46,7 +46,7 @@ class PubSubTransport implements TransportInterface, SetupableTransportInterface
         return ($this->receiver ?? $this->getReceiver())->get();
     }
 
-    private function getReceiver(): PubSubReceiver
+    public function getReceiver(): PubSubReceiver
     {
         return $this->receiver = new PubSubReceiver($this->connection, $this->serializer);
     }
@@ -69,5 +69,10 @@ class PubSubTransport implements TransportInterface, SetupableTransportInterface
     private function getSender(): PubSubSender
     {
         return $this->sender = new PubSubSender($this->connection, $this->serializer);
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }
