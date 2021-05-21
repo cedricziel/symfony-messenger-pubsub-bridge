@@ -1,6 +1,6 @@
 <?php
 
-namespace CedricZiel\Symfony\Bundle\GoogleCloudPubSubMessenger;
+namespace CedricZiel\Symfony\Messenger\Bridge\GcpPubSub;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
