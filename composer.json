@@ -33,6 +33,9 @@
         "test": "@php vendor/bin/simple-phpunit"
     },
     "minimum-stability": "dev",
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
