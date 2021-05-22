@@ -15,4 +15,26 @@ class ConnectionTest extends TestCase
 
         Connection::fromDsn('pubsub://:');
     }
+
+    public function testCanBeConstructedWithEmptyHost()
+    {
+        $connection = Connection::fromDsn('pubsub://auto/my-topic?subscription=foo');
+
+        $clientConfig = $connection->getClientConfig();
+
+        self::assertEquals('auto', $clientConfig['projectId']);
+    }
+
+    public function testDSNCanBeOverridenByOptions()
+    {
+        $connection = Connection::fromDsn('pubsub://auto/my-topic?subscription=foo', [
+            'client' => [
+                'projectId' => 'my-other-project',
+            ]
+        ]);
+
+        $clientConfig = $connection->getClientConfig();
+
+        self::assertEquals('my-other-project', $clientConfig['projectId']);
+    }
 }

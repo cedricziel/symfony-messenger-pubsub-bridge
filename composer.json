@@ -29,6 +29,10 @@
         "symfony/property-access": "^4.4|^5.0",
         "symfony/serializer": "^4.4|^5.0"
     },
+    "suggest": {
+        "ext-grpc": "Improved performance for gRPC connections",
+        "ext-protobuf": "Improved performance for gRPC connections"
+    },
     "scripts": {
         "test": "@php vendor/bin/simple-phpunit"
     },

@@ -10,6 +10,17 @@ use Symfony\Component\Messenger\Exception\InvalidArgumentException;
 
 class Connection
 {
+    private static $CLIENT_OPTIONS = [
+        'apiEndpoint',
+        'projectId',
+        'keyFilePath',
+        'requestTimeout',
+        'retries',
+        'scopes',
+        'quotaProject',
+        'transport'
+    ];
+
     /**
      * @var array
      */
@@ -43,6 +54,10 @@ class Connection
             $parsedUrl = [];
         }
 
+        $options += [
+            'client' => []
+        ];
+
         $clientOptions = [
             'projectId' => $parsedUrl['host'] ?? null,
         ];
@@ -54,11 +69,24 @@ class Connection
             throw new InvalidArgumentException('You need to supply a topic name');
         }
 
-        parse_str($parsedUrl['query'] ?? '', $parsedQuery);
-
         $topicOptions = [
             'name' => $topicName ?? null,
         ];
+
+        parse_str($parsedUrl['query'] ?? '', $parsedQuery);
+
+        // client options from DSN query parts
+        foreach (self::$CLIENT_OPTIONS as $option => $optionValue) {
+            if (isset($parsedQuery[$option])) {
+                $clientOptions[$option] = $parsedQuery[$optionValue];
+            }
+        }
+
+        if (is_array($options['client'])) {
+            foreach ($options['client'] as $clientOption => $value) {
+                $clientOptions[$clientOption] = $value;
+            }
+        }
 
         $subscriptionName = $parsedQuery['subscription'] ?? null;
         if ($subscriptionName === null || $subscriptionName === '') {
