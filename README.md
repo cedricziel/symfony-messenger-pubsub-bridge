@@ -1,5 +1,9 @@
 # Symfony Messenger Bridge for Google Cloud Pub/Sub
 
+Bridge [Google Cloud Pub/Sub](https://cloud.google.com/pubsub) with the Symfony messenger component.
+
+**Note:** Use [cedricziel/symfony-messenger-pubsub-bundle](https://github.com/cedricziel/symfony-messenger-pubsub-bundle) for automatic wiring in your Symfony Framework application.
+
 ## Installation
 
 ```shell
